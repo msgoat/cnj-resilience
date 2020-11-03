@@ -1,4 +1,4 @@
-package group.msg.at.cloud.cloudtrain.adapter.rest;
+package group.msg.at.cloud.cloudtrain.adapter.rest.in;
 
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.GET;
