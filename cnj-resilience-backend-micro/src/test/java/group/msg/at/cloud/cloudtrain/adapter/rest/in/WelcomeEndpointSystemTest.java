@@ -1,4 +1,4 @@
-package group.msg.at.cloud.cloudtrain.adapter.rest;
+package group.msg.at.cloud.cloudtrain.adapter.rest.in;
 
 import group.msg.at.cloud.common.test.adapter.rest.RestAssuredSystemTestFixture;
 import io.restassured.http.ContentType;
@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.startsWith;
  * Assumes that a remote server hosting the REST endpoint is up and running.
  * </p>
  */
-public class HelloEndpointSystemTest {
+public class WelcomeEndpointSystemTest {
 
     private static final RestAssuredSystemTestFixture fixture = new RestAssuredSystemTestFixture();
 
@@ -30,11 +30,10 @@ public class HelloEndpointSystemTest {
     }
 
     @Test
-    public void testGetWelcomeMessage() {
-        given().get("api/v1/hello")
+    public void testGetWelcomeItems() {
+        given().get("api/v1/welcome/{userId}", "testUser")
                 .then().assertThat()
                 .statusCode(200)
-                .contentType(ContentType.JSON)
-                .body("text", response -> startsWith("Welcome to Cloud Native Java with "));
+                .contentType(ContentType.JSON);
     }
 }

@@ -4,16 +4,36 @@ type: kubernetes
 name: cnj-resilience-build
 
 steps:
-  - name: javaee-commit-stage
+  - name: downstream-a-commit-stage
     image: docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-drone-build:1.1.0
     privileged: true
     commands:
       - start-docker.sh
-      - mvn clean deploy -f cnj-resilience-backend-javaee/pom.xml -B -ff -e -V -U -P commit-stage -Dchangelist=.${DRONE_BRANCH} -Dsha1=.${DRONE_COMMIT_SHA:0:8}
-  - name: javaee-integration-test-stage
+      - mvn clean deploy -f cnj-resilience-downstream-a/pom.xml -B -ff -e -V -U -P commit-stage -Dchangelist=.${DRONE_BRANCH} -Dsha1=.${DRONE_COMMIT_SHA:0:8}
+  - name: downstream-a-integration-test-stage
     image: docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-drone-build:1.1.0
     commands:
-      - mvn clean verify -f cnj-resilience-backend-javaee/pom.xml -B -ff -e -V -U -P integration-test-stage -Dchangelist=.${DRONE_BRANCH} -Dsha1=.${DRONE_COMMIT_SHA:0:8}
+      - mvn clean verify -f cnj-resilience-downstream-a/pom.xml -B -ff -e -V -U -P integration-test-stage -Dchangelist=.${DRONE_BRANCH} -Dsha1=.${DRONE_COMMIT_SHA:0:8}
+  - name: downstream-b-commit-stage
+    image: docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-drone-build:1.1.0
+    privileged: true
+    commands:
+      - start-docker.sh
+      - mvn clean deploy -f cnj-resilience-downstream-b/pom.xml -B -ff -e -V -U -P commit-stage -Dchangelist=.${DRONE_BRANCH} -Dsha1=.${DRONE_COMMIT_SHA:0:8}
+  - name: downstream-b-integration-test-stage
+    image: docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-drone-build:1.1.0
+    commands:
+      - mvn clean verify -f cnj-resilience-downstream-b/pom.xml -B -ff -e -V -U -P integration-test-stage -Dchangelist=.${DRONE_BRANCH} -Dsha1=.${DRONE_COMMIT_SHA:0:8}
+#  - name: javaee-commit-stage
+#    image: docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-drone-build:1.1.0
+#    privileged: true
+#    commands:
+#      - start-docker.sh
+#      - mvn clean deploy -f cnj-resilience-backend-javaee/pom.xml -B -ff -e -V -U -P commit-stage -Dchangelist=.${DRONE_BRANCH} -Dsha1=.${DRONE_COMMIT_SHA:0:8}
+#  - name: javaee-integration-test-stage
+#    image: docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-drone-build:1.1.0
+#    commands:
+#      - mvn clean verify -f cnj-resilience-backend-javaee/pom.xml -B -ff -e -V -U -P integration-test-stage -Dchangelist=.${DRONE_BRANCH} -Dsha1=.${DRONE_COMMIT_SHA:0:8}
   - name: micro-commit-stage
     image: docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-drone-build:1.1.0
     privileged: true

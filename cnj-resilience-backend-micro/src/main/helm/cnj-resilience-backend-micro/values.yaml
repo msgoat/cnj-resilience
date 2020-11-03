@@ -49,3 +49,14 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+cloudtrain:
+  services:
+    recommendations:
+      url: "http://cnj-resilience-downstream-a"
+    watchlist:
+      url: "http://cnj-resilience-downstream-b"
+  common:
+    rest:
+      trace:
+        enabled: true

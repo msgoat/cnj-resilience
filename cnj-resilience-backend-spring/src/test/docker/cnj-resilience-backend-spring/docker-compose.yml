@@ -8,14 +8,22 @@ version: '3'
 
 services:
 
+  downstream-a:
+    image: docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-resilience-downstream-a:latest
+
+  downstream-b:
+    image: docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-resilience-downstream-b:latest
+
   backend:
-    image: docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-resilience-backend-spring:${project.version}
+    image: ${docker.image.name}:${project.version}
     ports:
       - "38080:8080"
       - "38089:8089"
     environment:
       JAVA_OPTS: "-javaagent:/home/spring/org.jacoco.agent.jar=output=tcpserver,address=*,port=8089"
       SPRING_PROFILES_ACTIVE: cloud
+      CLOUDTRAIN_SERVICES_RECOMMENDATIONS_URL: http://downstream-a:8080
+      CLOUDTRAIN_SERVICES_WATCHLIST_URL: http://downstream-b:8080
 
 
 

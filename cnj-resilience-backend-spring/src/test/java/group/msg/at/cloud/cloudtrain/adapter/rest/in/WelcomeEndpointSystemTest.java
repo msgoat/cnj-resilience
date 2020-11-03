@@ -1,4 +1,4 @@
-package group.msg.at.cloud.cloudtrain.adapter.rest;
+package group.msg.at.cloud.cloudtrain.adapter.rest.in;
 
 import group.msg.at.cloud.common.test.adapter.rest.RestAssuredSystemTestFixture;
 import io.restassured.http.ContentType;
@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.startsWith;
 
 /**
  * System test that verifies that the REST endpoint works as expected.

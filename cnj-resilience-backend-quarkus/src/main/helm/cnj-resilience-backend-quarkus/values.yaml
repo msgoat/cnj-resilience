@@ -36,3 +36,14 @@ resources:
   requests:
     cpu: 100m
     memory: 756Mi
+
+cloudtrain:
+  services:
+    recommendations:
+      url: "http://cnj-resilience-downstream-a"
+    watchlist:
+      url: "http://cnj-resilience-downstream-b"
+  common:
+    rest:
+      trace:
+        enabled: true

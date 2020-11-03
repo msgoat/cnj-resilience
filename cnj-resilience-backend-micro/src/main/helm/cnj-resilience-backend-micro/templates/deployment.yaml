@@ -27,6 +27,13 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
+          env:
+            - name: CLOUDTRAIN_SERVICES_RECOMMENDATIONS_MP_REST_URL
+              value: {{ .Values.cloudtrain.services.recommendations.url }}
+            - name: CLOUDTRAIN_SERVICES_WATCHLIST_MP_REST_URL
+              value: {{ .Values.cloudtrain.services.watchlist.url }}
+            - name: CLOUDTRAIN_COMMON_REST_TRACE_ENABLED
+              value: {{ .Values.cloudtrain.common.rest.trace.enabled }}
           livenessProbe:
             httpGet:
               path: {{ .Values.probes.liveness.path }}

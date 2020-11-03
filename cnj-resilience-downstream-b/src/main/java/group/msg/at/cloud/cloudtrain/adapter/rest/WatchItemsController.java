@@ -17,7 +17,7 @@ public class WatchItemsController {
     WatchedItemHistory boundary;
 
     @GetMapping("{userId}")
-    public ResponseEntity<List<WatchedItem>> getWelcomeMessage(
+    public ResponseEntity<List<WatchedItem>> getWatchedItems(
             @PathVariable(name = "userId") String userId) {
         return ResponseEntity.ok(boundary.getWatchedItems(userId));
     }
