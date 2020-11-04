@@ -18,5 +18,6 @@ public class WatchListCollector {
 
     public void collect(WelcomeItems target, String userId) {
         List<WatchedItem> watchList = client.getWatchedItems(userId);
+        target.setWatchList(watchList);
     }
 }

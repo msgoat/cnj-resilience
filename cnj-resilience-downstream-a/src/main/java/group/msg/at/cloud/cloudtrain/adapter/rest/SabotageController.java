@@ -15,7 +15,7 @@ public class SabotageController {
     @GetMapping
     public void sabotageBehaviour(
             @RequestParam(value = "noResponse", required = false, defaultValue = "false") boolean noResponse,
-            @RequestParam(value = "noResponse", required = false, defaultValue = "false") boolean slowResponse,
+            @RequestParam(value = "slowResponse", required = false, defaultValue = "false") boolean slowResponse,
             @RequestParam(value = "alwaysFail", required = false, defaultValue = "false") boolean alwaysFail) {
         boundary.setUnexpectedBevaviour(noResponse, slowResponse, alwaysFail);
     }

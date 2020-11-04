@@ -25,11 +25,23 @@ public class WatchedItem {
         return itemId;
     }
 
+    public void setItemId(UUID itemId) {
+        this.itemId = itemId;
+    }
+
     public String getItemName() {
         return itemName;
     }
 
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
     public LocalDateTime getWatchedAt() {
         return watchedAt;
+    }
+
+    public void setWatchedAt(LocalDateTime watchedAt) {
+        this.watchedAt = watchedAt;
     }
 }

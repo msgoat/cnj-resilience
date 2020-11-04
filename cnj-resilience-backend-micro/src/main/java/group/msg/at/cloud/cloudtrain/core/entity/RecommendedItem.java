@@ -25,11 +25,23 @@ public class RecommendedItem {
         return itemId;
     }
 
+    public void setItemId(UUID itemId) {
+        this.itemId = itemId;
+    }
+
     public String getItemName() {
         return itemName;
     }
 
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
     public BigDecimal getWeight() {
         return weight;
+    }
+
+    public void setWeight(BigDecimal weight) {
+        this.weight = weight;
     }
 }
