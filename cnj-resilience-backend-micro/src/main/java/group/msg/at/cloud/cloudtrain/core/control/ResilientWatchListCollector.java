@@ -3,6 +3,7 @@ package group.msg.at.cloud.cloudtrain.core.control;
 import group.msg.at.cloud.cloudtrain.adapter.rest.out.watchlist.WatchListClient;
 import group.msg.at.cloud.cloudtrain.core.entity.WatchedItem;
 import group.msg.at.cloud.cloudtrain.core.entity.WelcomeItems;
+import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
 import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Timeout;
 import org.eclipse.microprofile.rest.client.inject.RestClient;

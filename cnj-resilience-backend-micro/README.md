@@ -1,55 +1,21 @@
 # cnj-resilience-backend-micro
 
-Simplest possible cloud native java application based on Eclipse Micro Profile.
+Simple cloud native java application based on Eclipse Microprofile demonstrating the application of resilience patterns
+when calls to downstream services are failing.
 
-## Docker Pull Command
-`docker pull docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-resilience-backend-micro`
+The [WelcomeResource] (src/main/java/group/msg/at/cloud/cloudtrain/adapter/rest/in/WelcomeResource.java) returns
+[WelcomeItems](src/main/java/group/msg/at/cloud/cloudtrain/core/entity/WelcomeItems.java)
+for a given user.
 
-## Run this application 
+Each `WelcomeItem` is made of domain objects retrieved via downstream services:
 
-``` 
-docker run --name cnj-resilience-backend-micro -p 8080:8080 docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-resilience-backend-micro
-```
+* [cnj-resilience-downstream-a](../cnj-resilience-downstream-a/README.md) returns a list of `RecommendedItem`s representing recommended movies or TV series.
+* [cnj-resilience-downstream-b](../cnj-resilience-downstream-b/README.md) returns a list of `WatchedItem`s representing watched movies or TV series.
 
-## Build this application 
+The applied resilience patterns make sure that this service stays at least partially functional even
+if any the downstream services shows abnormal behaviour.
 
-See [cnj-resilience](../README.md) for build instructions.
+The application itself offers two REST endpoints:
 
-## Exposed REST endpoints
-
-### /api/v1/hello
-
-Returns a simple welcome message user in JSON format
-
-Method
-: GET
-
-URI
-: /v1/hello
-
-Parameter(s)
-: none
-
-Response
-: welcome message as JSON document
-
-Authentication type
-: none
-
-Role(s) required
-: none
-
-
-## Exposed environment variables
-
-## Exposed Ports
-
-| Port | Protocol | Description |
-| --- | --- | --- |
-| 8080 | HTTP | HTTP endpoint of this microprofile application | 
- 
-## Version / Tags
-
-| Tag(s) | Remarks |
-| --- | --- |
-| latest, 1.0.0 | first release |
+* GET on `/api/v1/welcome/{userId}` is not resilient and will fail if any of the downstream services breaks.
+* GET on `/api/v1/resilient/welcome/{userId}` is resilient and will keep on working even if any of the downstream services breaks.

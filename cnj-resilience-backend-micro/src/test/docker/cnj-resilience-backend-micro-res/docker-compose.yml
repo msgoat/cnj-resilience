@@ -9,12 +9,12 @@ version: '3'
 services:
 
   downstream-a:
-    image: docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-resilience-downstream-a:latest
+    image: docker.cloudtrain.aws.msgoat.eu/cloudtrain/cnj-resilience-downstream-a:latest
     ports:
       - "38081:8080"
 
   downstream-b:
-    image: docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-resilience-downstream-b:latest
+    image: docker.cloudtrain.aws.msgoat.eu/cloudtrain/cnj-resilience-downstream-b:latest
     ports:
       - "38082:8080"
 

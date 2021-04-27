@@ -1,4 +1,4 @@
-FROM docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/at41-docker-jre11:2.1.0
+FROM docker.cloudtrain.aws.msgoat.eu/cloudtrain/at41-docker-jre11:3.0.0
 
 LABEL maintainer="michael.theis@msg.group" \
         ${project.groupId}.${project.artifactId}.project="CloudTrain" \
@@ -29,7 +29,8 @@ RUN chown spring:spring /docker-entrypoint.sh \
     && chmod u+x /docker-entrypoint.sh \
     && chown -R spring:spring ${ARG_JAVA_APPLICATION_HOME}
 
-USER spring
+# use user ID instead of user name to allow kubernetes to check non-root users
+USER 1000
 
 EXPOSE 8080
 

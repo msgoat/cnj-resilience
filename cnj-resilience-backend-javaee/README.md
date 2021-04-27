@@ -1,61 +1,21 @@
 # cnj-resilience-backend-javaee
 
-Simplest possible cloud native java application based on Java EE 8.
+Simple cloud native java application based on JavaEE demonstrating the application of resilience patterns
+when calls to downstream services are failing.
 
-## Docker Pull Command
-`docker pull docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-resilience-backend-javaee`
+The [WelcomeResource] (src/main/java/group/msg/at/cloud/cloudtrain/adapter/rest/in/WelcomeResource.java) returns
+[WelcomeItems](src/main/java/group/msg/at/cloud/cloudtrain/core/entity/WelcomeItems.java)
+for a given user.
 
-## Run this application 
+Each `WelcomeItem` is made of domain objects retrieved via downstream services:
 
-``` 
-docker run --name cnj-resilience-backend-javaee -p 8080:8080 docker.at41tools.k8s.aws.msgoat.eu/cloudtrain/cnj-resilience-backend-javaee
-```
+* [cnj-resilience-downstream-a](../cnj-resilience-downstream-a/README.md) returns a list of `RecommendedItem`s representing recommended movies or TV series.
+* [cnj-resilience-downstream-b](../cnj-resilience-downstream-b/README.md) returns a list of `WatchedItem`s representing watched movies or TV series.
 
-## Build this application 
+The applied resilience patterns make sure that this service stays at least partially functional even
+if any the downstream services shows abnormal behaviour.
 
-See [cnj-resilience](../README.md) for build instructions.
+The application itself offers two REST endpoints:
 
-``` 
-mvn clean verify -P pre-commit-stage
-```
-
-Build results: a Docker image containing an Payara Full Profile application server plus the deploy application.
-
-## Exposed REST endpoints
-
-### /api/v1/hello
-
-Returns a simple welcome message to the currently authenticated user.
-
-Method
-: GET
-
-URI
-: /api/v1/hello
-
-Parameter(s)
-: none
-
-Response
-: welcome message as JSON document
-
-Authentication type
-: none
-
-Role(s) required
-: none
-
-
-## Exposed environment variables
-
-## Exposed Ports
-
-| Port | Protocol | Description |
-| --- | --- | --- |
-| 8080 | HTTP | HTTP endpoint of this application | 
- 
-## Version / Tags
-
-| Tag(s) | Remarks |
-| --- | --- |
-| latest, 4.0.0 | first release |
+* GET on `/api/v1/welcome/{userId}` is not resilient and will fail if any of the downstream services breaks.
+* GET on `/api/v1/resilient/welcome/{userId}` is resilient and will keep on working even if any of the downstream services breaks.
