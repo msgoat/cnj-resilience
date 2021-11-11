@@ -4,7 +4,6 @@ Showcase of resilient cloud native Java applications.
 
 The actual implementation of resilience or fault tolerance is demonstrated with different Java backend technologies:
 
-* Java EE (see: [cnj-resilience-backend-javaee](cnj-resilience-backend-javaee/README.md))
 * Eclipse MicroProfile (see: [cnj-resilience-backend-micro](cnj-resilience-backend-micro/README.md))
 * Spring Boot (see: [cnj-resilience-backend-spring](cnj-resilience-backend-spring/README.md))
 * Quarkus (see: [cnj-resilience-backend-quarkus](cnj-resilience-backend-quarkus/README.md))

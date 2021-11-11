@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>group.msg.at.cloud</groupId>
     <artifactId>cnj-resilience</artifactId>
-    <version>0.8.0</version>
+    <version>2.0.0</version>
     <packaging>pom</packaging>
     <description>Showcases demonstrating resilience or fault tolerance in cloud native Java applications</description>
     <properties>
@@ -27,7 +27,6 @@
     <modules>
         <module>cnj-resilience-downstream-a</module>
         <module>cnj-resilience-downstream-b</module>
-        <module>cnj-resilience-backend-javaee</module>
         <module>cnj-resilience-backend-micro</module>
         <module>cnj-resilience-backend-spring</module>
         <module>cnj-resilience-backend-quarkus</module>
