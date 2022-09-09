@@ -1,5 +1,11 @@
 # cnj-resilience
 
+> __@deprecated__: Replaced by new repositories [cnj-resilience-backend-micro](https://github.com/msgoat/cnj-resilience-backend-micro),
+> [cnj-resilience-backend-quarkus](https://github.com/msgoat/cnj-resilience-backend-quarkus), 
+> [cnj-resilience-backend-spring](https://github.com/msgoat/cnj-resilience-backend-spring), 
+> [cnj-resilience-downstream-a](https://github.com/msgoat/cnj-resilience-downstream-a),
+> and [cnj-resilience-downstream-b](https://github.com/msgoat/cnj-resilience-downstream-b).
+
 Showcase of resilient cloud native Java applications.
 
 The actual implementation of resilience or fault tolerance is demonstrated with different Java backend technologies:
